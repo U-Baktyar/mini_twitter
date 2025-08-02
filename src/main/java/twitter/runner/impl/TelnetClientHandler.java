@@ -1,6 +1,7 @@
 package twitter.runner.impl;
 
 import twitter.exception.ClientDisconnectedException;
+import twitter.exception.TwitterCommandException;
 import twitter.exception.UnknowCommandException;
 
 import twitter.factory.CommandFactory;
@@ -46,7 +47,12 @@ public class TelnetClientHandler implements Runnable {
                     } catch (IOException ex1) {
                         System.out.println(ex.getMessage());
                     }
-                } catch (ClientDisconnectedException ex) {
+                } catch (TwitterCommandException e){
+                    writer.append(e.getMessage());
+                    writer.flush();
+                    e.printStackTrace();
+                }
+                catch (ClientDisconnectedException ex) {
                     System.out.println("Клиент с IP " + clientId + " отключился.");
                     return;
                 }
