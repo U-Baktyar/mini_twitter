@@ -235,7 +235,7 @@ public class RegistrationControllerImpl implements RegistrationController {
         out.flush();
         String dateOfFoundation = in.readLine();
         if (dateOfFoundation == null || dateOfFoundation.trim().isEmpty()) {
-            out.append("Дата основания не может быть пустой").append("\n");
+            out.append("Дата основания не может быть пустой ").append("\n");
             out.flush();
             return null;
         }
